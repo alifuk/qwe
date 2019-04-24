@@ -10,6 +10,8 @@ class Mainpage : public QMainWindow
 public:
 	Mainpage(QWidget *parent = Q_NULLPTR);
 
+public slots:
+	void muj();
 private:
 	Ui::MainpageClass ui;
 	QGraphicsScene scene;

@@ -2,18 +2,27 @@
 #include "opencv2/core.hpp"
 #include "opencv2/imgproc.hpp"
 #include "opencv2/imgcodecs.hpp"
+#include "qfiledialog.h"
 
+void Mainpage::muj() {
+
+	//QListWidgetItem 
+	this->ui.pushButton->setText("asdss");
+	QFileDialog d(this);
+	d.exec();
+
+
+	//QListWidgetItem* m = new QListWidgetItem(tr("asd"), ui.listWidget);
+}
 
 Mainpage::Mainpage(QWidget *parent)
 	: QMainWindow(parent)
 {
 	ui.setupUi(this);
-
+	connect(ui.pushButton, SIGNAL(clicked()), this, SLOT(muj()) );
 	//cv::Mat* img = new cv::Mat(1000, 2000, CV_8UC1, cv::Scalar(80));
 	cv::Mat img;
 	img = cv::imread("computar.png",0);
-	//cv::Mat temp; // make the same cv::Mat
-	//cvtColor(img, temp, CV_BGR2RGB); // cvtColor Makes a copt, that what i need
 	
 
 	QGraphicsScene* scene = new QGraphicsScene();
