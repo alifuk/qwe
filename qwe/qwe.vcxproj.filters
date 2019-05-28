@@ -36,9 +36,27 @@
     <ClCompile Include="mainpage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Img_tile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="krokosled.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="krok.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="feature.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="main_page.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="Imprev.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="Img_tile.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>
@@ -46,10 +64,24 @@
     <QtMoc Include="mainpage.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="Img_tile.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="mainpage.qrc">
       <Filter>Resource Files</Filter>
     </QtRcc>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="krokosled.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="krok.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="feature.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -12,7 +12,11 @@ public:
 
 public slots:
 	void muj();
+	void fit();
 private:
 	Ui::MainpageClass ui;
-	QGraphicsScene scene;
+	QGraphicsScene* scene;
+	float f_zoom;
+protected:
+	bool Mainpage::eventFilter(QObject *obj, QEvent *event);
 };
