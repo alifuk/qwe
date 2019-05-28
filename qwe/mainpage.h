@@ -13,10 +13,11 @@ public:
 public slots:
 	void muj();
 	void fit();
+	void load_image();
 private:
 	Ui::MainpageClass ui;
 	QGraphicsScene* scene;
 	float f_zoom;
 protected:
-	bool Mainpage::eventFilter(QObject *obj, QEvent *event);
+	bool Mainpage::eventFilter(QObject *obj, QEvent *event); 
 };

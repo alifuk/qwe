@@ -7,31 +7,32 @@
 
 #include "Img_tile.h"
 
-void Mainpage::muj() {
-	
 
-	//QListWidgetItem 
-	this->ui.pushButton->setText("asdss");
+void Mainpage::load_image() {
+
 	QFileDialog d(this);
 	d.setFileMode(QFileDialog::ExistingFiles);
 	if (d.exec()) {
 		QStringList files = d.selectedFiles();
 		//files.at(0);
 		for (int i = 0; i < files.length(); i++) {
-			std::string a = "asfd";
-			//a = files[i].toStdString();
-			QListWidgetItem* m = new QListWidgetItem(tr(files[i].toLocal8Bit().data()), ui.listWidget);
+			std::string filepath = files[i].toStdString();
+			//QListWidgetItem* m = new QListWidgetItem(tr(files[i].toLocal8Bit().data()), ui.listWidget);
 
 			QListWidgetItem* myit = new QListWidgetItem();
-			Img_tile* tile = new Img_tile();
+			Img_tile* tile = new Img_tile(filepath, this);
 			ui.listWidget_2->addItem(myit);
 
-			myit->setSizeHint(  QSize(tile->width(), tile->height()));
+			myit->setSizeHint(QSize(tile->width(), tile->height()));
 			ui.listWidget_2->setItemWidget(myit, tile);
 		}
 	}
+}
 
+void Mainpage::muj() {
+	
 
+	//QListWidgetItem 
 	//QListWidgetItem* m = new QListWidgetItem(tr("asd"), ui.listWidget);
 }
 
@@ -43,6 +44,8 @@ Mainpage::Mainpage(QWidget *parent)
 	: QMainWindow(parent)
 {
 	ui.setupUi(this);
+
+	connect(ui.btn_load_img, SIGNAL(clicked()), this, SLOT(load_image()));
 
 	connect(ui.pushButton, SIGNAL(clicked()), this, SLOT(muj()) );
 	connect(ui.btn_fit, SIGNAL(clicked()), this, SLOT(fit()));
@@ -83,6 +86,11 @@ bool Mainpage::eventFilter(QObject *obj, QEvent *event) {
 		}
 		event->accept();
 		return true;
+	}
+
+	if (event->type() == QEvent::KeyPress) {
+		//QKeyEvent* key = static_cast<QKeyEvent*>(event);
+		int d = 8;
 	}
 	return false;
 }
