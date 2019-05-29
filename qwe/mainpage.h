@@ -19,9 +19,13 @@ public:
 public slots:
 	void fit();
 	void add_image();
+	void show_steps();
 	void add_step();
 	void add_state();
+	void hide_step_selector();
 	void delete_state();
+
+	void show_pure_img();
 private:
 	Ui::MainpageClass ui;
 	QGraphicsScene* scene;

@@ -36,6 +36,14 @@ void Mainpage::add_image() {
 		QStringList files = d.selectedFiles();
 		for (int i = 0; i < files.length(); i++) {
 			std::string filepath = files[i].toStdString();
+			auto iterator = std::find(filepaths.begin(), filepaths.end(), filepath);
+			if (iterator != filepaths.end()) {
+				QMessageBox* mb = new QMessageBox();
+				mb->setText(QString::fromStdString( filepath + " already in list"));
+				mb->exec();
+				continue;
+			}
+
 			//QListWidgetItem* m = new QListWidgetItem(tr(files[i].toLocal8Bit().data()), ui.listWidget);
 			filepaths.push_back(filepath);
 
@@ -48,14 +56,18 @@ void Mainpage::add_image() {
 	}
 }
 
+void Mainpage::show_steps()
+{
+	ui.frame->show();
+}
+
 void Mainpage::add_step()
 {
-
-	/*
-	QMessageBox msgBox;
-	msgBox.setText("The document has been modified.");
-	msgBox.exec();
-	*/
+	QPushButton* buttonSender = qobject_cast<QPushButton*>(sender()); // retrieve the button you have clicked
+	QString buttonText = buttonSender->text();
+	QMessageBox mb;
+	mb.setText(buttonText);
+	mb.exec();
 }
 
 void Mainpage::add_state()
@@ -64,8 +76,38 @@ void Mainpage::add_state()
 
 }
 
+void Mainpage::hide_step_selector()
+{
+	ui.frame->hide();
+}
+
 void Mainpage::delete_state()
 {
+}
+
+void Mainpage::show_pure_img()
+{
+	string filepath = getSelectedFilepath();
+
+
+	cv::Mat img;
+	img = cv::imread(filepath, 0);
+
+	auto items = scene->items();
+	int numma = items.size();
+
+	if (numma == 1) {
+		scene->removeItem(items.at(0));
+	}
+
+	QPixmap p = QPixmap::fromImage(QImage(img.data, img.cols, img.rows, QImage::Format_Grayscale8));
+	QPixmap* pi = &p;
+	scene->addPixmap(*pi);
+	scene->setSceneRect(0, 0, img.cols, img.rows);
+	if (!ui.cb_keep_zoom->isChecked()) {
+		fit();
+	}
+
 }
 
 
@@ -79,8 +121,14 @@ Mainpage::Mainpage(QWidget *parent)
 	ui.setupUi(this);
 
 	connect(ui.btn_load_img, SIGNAL(clicked()), this, SLOT(add_image()));
-	connect(ui.btn_add_step, SIGNAL(clicked()), this, SLOT(add_step()));
+	connect(ui.btn_add_step, SIGNAL(clicked()), this, SLOT(show_steps()));
 	connect(ui.btn_add_state, SIGNAL(clicked()), this, SLOT(add_state()));
+	connect(ui.btn_hide, SIGNAL(clicked()), this, SLOT(hide_step_selector()));
+
+	connect(ui.lw_basefiles, SIGNAL(itemSelectionChanged()), this, SLOT(show_pure_img()));
+
+	connect(ui.btn_add_krok_load_image, SIGNAL(clicked()), this, SLOT(add_step()));
+
 
 	connect(ui.btn_fit, SIGNAL(clicked()), this, SLOT(fit()));
 	ui.graphicsView->setEnabled(true);
@@ -89,28 +137,19 @@ Mainpage::Mainpage(QWidget *parent)
 	ui.lv_states->setModel(state_list_model);
 
 	filepaths = vector<string>();
-
-	//cv::Mat* img = new cv::Mat(1000, 2000, CV_8UC1, cv::Scalar(80));
-	cv::Mat img;
-	img = cv::imread("computar.png",0);
-	
+		
 	ui.graphicsView->setDragMode(QGraphicsView::DragMode::ScrollHandDrag);
 	ui.graphicsView->scale(1.1, 1.1);
 	f_zoom = 1;
 	scene = new QGraphicsScene();
 	scene->installEventFilter(this);
 
-	//connect(scene, SIGNAL(wheelEvent(QWheelEvent* evente)), this, SLOT(zoom()));
-
-	QPixmap p = QPixmap::fromImage(QImage(img.data, img.cols, img.rows, QImage::Format_Grayscale8));
-	QPixmap* pi = &p;
-	scene->addPixmap(*pi);
-
 	ui.graphicsView->setScene(scene);
-	
 	ui.graphicsView->show();
 
-	//ui.graphicsView->fitInView(scene.sceneRect(), Qt::KeepAspectRatio);
+	//connect(scene, SIGNAL(wheelEvent(QWheelEvent* evente)), this, SLOT(zoom()));
+
+	
 }
 
 string Mainpage::getSelectedFilepath()
