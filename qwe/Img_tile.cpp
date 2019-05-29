@@ -6,18 +6,21 @@
 using namespace std;
 using namespace cv;
 
-Img_tile::Img_tile(std::string filepath, QWidget *parent)
+Img_tile::Img_tile(std::string _filepath, QWidget *parent)
 	: QWidget(parent)
 {
 	ui = Ui::Img_tile();
 	ui.setupUi(this);
+	filepath = _filepath;
+
 	ui.lbl_name->setText(QString::fromStdString(filepath));
 	ui.lbl_name->setToolTip(QString::fromStdString(filepath));
 
 	Mat thumb = imread(filepath);
 	QPixmap p = QPixmap::fromImage(QImage(thumb.data, thumb.cols, thumb.rows, QImage::Format_Grayscale8));
 	QPixmap* pi = &p;
-	a = 7;
+
+
 	scene = new QGraphicsScene();
 	scene->addPixmap(*pi);
 

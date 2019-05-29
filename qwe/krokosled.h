@@ -3,15 +3,15 @@
 #include <vector>
 
 
-class krokosled
+class Krokosled
 {
 public:
-	krokosled();
+	Krokosled();
 
 	std::string name;
 	//std::vector<>
 
 
-	~krokosled();
+	~Krokosled();
 };
 

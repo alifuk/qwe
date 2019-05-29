@@ -4,6 +4,7 @@
 
 #include "ui_main_page.h"
 #include "krokosled.h"
+#include "StateListModel.h"
 
 using namespace std;
 
@@ -13,7 +14,7 @@ class Mainpage : public QMainWindow
 
 public:
 	Mainpage(QWidget *parent = Q_NULLPTR);
-	krokosled getSelectedState();
+	Krokosled getSelectedState();
 
 public slots:
 	void fit();
@@ -25,8 +26,11 @@ private:
 	Ui::MainpageClass ui;
 	QGraphicsScene* scene;
 	float f_zoom;
-	vector<krokosled> states;
-	int number_of_states;
+
+	vector<string> filepaths;
+	string getSelectedFilepath();
+
+	StateListModel* state_list_model;
 
 protected:
 	bool Mainpage::eventFilter(QObject *obj, QEvent *event); 

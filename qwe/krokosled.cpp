@@ -2,11 +2,11 @@
 
 
 
-krokosled::krokosled()
+Krokosled::Krokosled()
 {
 }
 
 
-krokosled::~krokosled()
+Krokosled::~Krokosled()
 {
 }

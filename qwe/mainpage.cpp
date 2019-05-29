@@ -2,11 +2,14 @@
 #include "opencv2/core.hpp"
 #include "opencv2/imgproc.hpp"
 #include "opencv2/imgcodecs.hpp"
+
 #include "qfiledialog.h"
 #include "qgraphicssceneevent.h"
-
 #include "qmessagebox.h"
+
 #include "Img_tile.h"
+#include "StateListModel.h"
+
 #include <QKeyEvent>
 
 void Mainpage::keyPressEvent(QKeyEvent* event)
@@ -14,6 +17,7 @@ void Mainpage::keyPressEvent(QKeyEvent* event)
 	//QKeyEvent eve = &event;
 	if (event->key() == Qt::Key_D)
 	{
+		getSelectedFilepath();
 		int a = 8;
 		//myLabel->setText("You pressed ESC");
 	}
@@ -23,38 +27,45 @@ void Mainpage::keyPressEvent(QKeyEvent* event)
 
 }
 
+
 void Mainpage::add_image() {
 
 	QFileDialog d(this);
 	d.setFileMode(QFileDialog::ExistingFiles);
 	if (d.exec()) {
 		QStringList files = d.selectedFiles();
-		//files.at(0);
 		for (int i = 0; i < files.length(); i++) {
 			std::string filepath = files[i].toStdString();
 			//QListWidgetItem* m = new QListWidgetItem(tr(files[i].toLocal8Bit().data()), ui.listWidget);
+			filepaths.push_back(filepath);
 
-			QListWidgetItem* myit = new QListWidgetItem();
+			QListWidgetItem* fileitem = new QListWidgetItem();
 			Img_tile* tile = new Img_tile(filepath, this);
-			ui.listWidget_2->addItem(myit);
-
-			myit->setSizeHint(QSize(tile->width(), tile->height()));
-			ui.listWidget_2->setItemWidget(myit, tile);
+			ui.lw_basefiles->addItem(fileitem);
+			fileitem->setSizeHint(QSize(tile->width(), tile->height()));
+			ui.lw_basefiles->setItemWidget(fileitem, tile);
 		}
 	}
 }
 
 void Mainpage::add_step()
 {
+
+	/*
 	QMessageBox msgBox;
 	msgBox.setText("The document has been modified.");
 	msgBox.exec();
+	*/
 }
 
 void Mainpage::add_state()
 {
+	state_list_model->addState();
 
+}
 
+void Mainpage::delete_state()
+{
 }
 
 
@@ -69,9 +80,15 @@ Mainpage::Mainpage(QWidget *parent)
 
 	connect(ui.btn_load_img, SIGNAL(clicked()), this, SLOT(add_image()));
 	connect(ui.btn_add_step, SIGNAL(clicked()), this, SLOT(add_step()));
+	connect(ui.btn_add_state, SIGNAL(clicked()), this, SLOT(add_state()));
 
 	connect(ui.btn_fit, SIGNAL(clicked()), this, SLOT(fit()));
 	ui.graphicsView->setEnabled(true);
+
+	state_list_model = new StateListModel();
+	ui.lv_states->setModel(state_list_model);
+
+	filepaths = vector<string>();
 
 	//cv::Mat* img = new cv::Mat(1000, 2000, CV_8UC1, cv::Scalar(80));
 	cv::Mat img;
@@ -94,6 +111,14 @@ Mainpage::Mainpage(QWidget *parent)
 	ui.graphicsView->show();
 
 	//ui.graphicsView->fitInView(scene.sceneRect(), Qt::KeepAspectRatio);
+}
+
+string Mainpage::getSelectedFilepath()
+{
+	QListWidgetItem* selected = ui.lw_basefiles->selectedItems()[0];
+	//ui.lw_basefile
+	Img_tile* wid = (Img_tile*)ui.lw_basefiles->itemWidget(selected);
+	return wid->filepath;
 }
 
 bool Mainpage::eventFilter(QObject *obj, QEvent *event) {

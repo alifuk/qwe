@@ -48,6 +48,9 @@
     <ClCompile Include="feature.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="StateListModel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="main_page.ui">
@@ -65,6 +68,9 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="Img_tile.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="StateListModel.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
