@@ -4,24 +4,12 @@
 #include "opencv2/imgcodecs.hpp"
 #include "qfiledialog.h"
 #include "qgraphicssceneevent.h"
+
+#include "qmessagebox.h"
 #include "Img_tile.h"
-#include <QKeyEvent>
 
-void Mainpage::keyPressEvent(QKeyEvent* event)
-{
-	//QKeyEvent eve = &event;
-	if (event->key() == Qt::Key_D)
-	{
-		int a = 8;
-		//myLabel->setText("You pressed ESC");
-	}
-	else {
-		QMainWindow::keyPressEvent(event);
-	}
-	
-}
 
-void Mainpage::load_image() {
+void Mainpage::add_image() {
 
 	QFileDialog d(this);
 	d.setFileMode(QFileDialog::ExistingFiles);
@@ -42,12 +30,19 @@ void Mainpage::load_image() {
 	}
 }
 
-void Mainpage::muj() {
-	
-
-	//QListWidgetItem 
-	//QListWidgetItem* m = new QListWidgetItem(tr("asd"), ui.listWidget);
+void Mainpage::add_step()
+{
+	QMessageBox msgBox;
+	msgBox.setText("The document has been modified.");
+	msgBox.exec();
 }
+
+void Mainpage::add_state()
+{
+
+
+}
+
 
 void Mainpage::fit() {
 	this->ui.graphicsView->fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
@@ -58,9 +53,9 @@ Mainpage::Mainpage(QWidget *parent)
 {
 	ui.setupUi(this);
 
-	connect(ui.btn_load_img, SIGNAL(clicked()), this, SLOT(load_image()));
+	connect(ui.btn_load_img, SIGNAL(clicked()), this, SLOT(add_image()));
+	connect(ui.btn_add_step, SIGNAL(clicked()), this, SLOT(add_step()));
 
-	connect(ui.pushButton, SIGNAL(clicked()), this, SLOT(muj()) );
 	connect(ui.btn_fit, SIGNAL(clicked()), this, SLOT(fit()));
 	ui.graphicsView->setEnabled(true);
 
