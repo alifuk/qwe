@@ -4,9 +4,22 @@
 #include "opencv2/imgcodecs.hpp"
 #include "qfiledialog.h"
 #include "qgraphicssceneevent.h"
-
 #include "Img_tile.h"
+#include <QKeyEvent>
 
+void Mainpage::keyPressEvent(QKeyEvent* event)
+{
+	//QKeyEvent eve = &event;
+	if (event->key() == Qt::Key_D)
+	{
+		int a = 8;
+		//myLabel->setText("You pressed ESC");
+	}
+	else {
+		QMainWindow::keyPressEvent(event);
+	}
+	
+}
 
 void Mainpage::load_image() {
 

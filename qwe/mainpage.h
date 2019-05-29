@@ -20,4 +20,5 @@ private:
 	float f_zoom;
 protected:
 	bool Mainpage::eventFilter(QObject *obj, QEvent *event); 
+	virtual void keyPressEvent(QKeyEvent * event);
 };
