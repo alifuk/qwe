@@ -1,5 +1,6 @@
 #include "StateListModel.h"
 #include <string> 
+#include <qmessagebox.h>
 
 using namespace std;
 

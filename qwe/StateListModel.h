@@ -2,6 +2,7 @@
 
 #include <QAbstractListModel>
 #include "krokosled.h"
+#include "qitemselectionmodel.h"
 
 using namespace std;
 
@@ -18,10 +19,10 @@ public:
 	void addState();
 	void removeCurrentState();
 
+
 private:
 	vector<Krokosled>* states;
 	int number_of_states;
-
 
 };
 

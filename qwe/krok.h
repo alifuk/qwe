@@ -1,15 +1,23 @@
 #pragma once
 #include "string"
-class krok
+#include "qwidget.h"
+#include "krokosled.h"
+
+using namespace std;
+
+class krok : QWidget
 {
 public:
 	krok();
+	~krok();
 
-	std::string name;
-	void execute();
-	//std::vector<>
+	string name;
+
+
+protected:
+	void execute(Krokosled* _krokosled);
 
 		
-	~krok();
+	
 };
 

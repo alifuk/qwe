@@ -51,6 +51,9 @@
     <ClCompile Include="StateListModel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="KrokyGeneral.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="main_page.ui">
@@ -87,6 +90,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="feature.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="KrokyGeneral.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

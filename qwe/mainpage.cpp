@@ -6,9 +6,11 @@
 #include "qfiledialog.h"
 #include "qgraphicssceneevent.h"
 #include "qmessagebox.h"
+#include "qitemselectionmodel.h"
 
 #include "Img_tile.h"
 #include "StateListModel.h"
+#include "KrokyGeneral.h"
 
 #include <QKeyEvent>
 
@@ -61,13 +63,25 @@ void Mainpage::show_steps()
 	ui.frame->show();
 }
 
-void Mainpage::add_step()
+
+void Mainpage::add_step(steps_type type)
 {
+	switch (type) {
+	case steps_type::resize:
+		break;
+	case steps_type::rotate:
+		Krok_rotate* krok_rotate = new Krok_rotate();
+
+		break;
+	}
+
+	/*
 	QPushButton* buttonSender = qobject_cast<QPushButton*>(sender()); // retrieve the button you have clicked
 	QString buttonText = buttonSender->text();
 	QMessageBox mb;
 	mb.setText(buttonText);
 	mb.exec();
+	*/
 }
 
 void Mainpage::add_state()
@@ -127,7 +141,8 @@ Mainpage::Mainpage(QWidget *parent)
 
 	connect(ui.lw_basefiles, SIGNAL(itemSelectionChanged()), this, SLOT(show_pure_img()));
 
-	connect(ui.btn_add_krok_load_image, SIGNAL(clicked()), this, SLOT(add_step()));
+	connect(ui.btn_add_krok_resize, SIGNAL(clicked()), this, SLOT(add_step("resize")));
+	connect(ui.btn_add_krok_rotate, SIGNAL(clicked()), this, SLOT(add_step("rotate")));
 
 
 	connect(ui.btn_fit, SIGNAL(clicked()), this, SLOT(fit()));
@@ -135,6 +150,7 @@ Mainpage::Mainpage(QWidget *parent)
 
 	state_list_model = new StateListModel();
 	ui.lv_states->setModel(state_list_model);
+	//connect(ui.lv_states->selectionModel(), SIGNAL(currentChanged()), this, SLOT(myChanged()));
 
 	filepaths = vector<string>();
 		
@@ -147,6 +163,8 @@ Mainpage::Mainpage(QWidget *parent)
 	ui.graphicsView->setScene(scene);
 	ui.graphicsView->show();
 
+	number_of_steps = 1;
+
 	//connect(scene, SIGNAL(wheelEvent(QWheelEvent* evente)), this, SLOT(zoom()));
 
 	
@@ -158,6 +176,13 @@ string Mainpage::getSelectedFilepath()
 	//ui.lw_basefile
 	Img_tile* wid = (Img_tile*)ui.lw_basefiles->itemWidget(selected);
 	return wid->filepath;
+}
+
+Krokosled Mainpage::getCurrentKrokosled() {
+	//ui.lv_states.selected
+	Krokosled* k = new Krokosled();
+	return *k;
+
 }
 
 bool Mainpage::eventFilter(QObject *obj, QEvent *event) {

@@ -118,6 +118,7 @@
     <ClCompile Include="Img_tile.cpp" />
     <ClCompile Include="krok.cpp" />
     <ClCompile Include="krokosled.cpp" />
+    <ClCompile Include="KrokyGeneral.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mainpage.cpp" />
     <ClCompile Include="StateListModel.cpp" />
@@ -143,6 +144,7 @@
     <ClInclude Include="feature.h" />
     <ClInclude Include="krok.h" />
     <ClInclude Include="krokosled.h" />
+    <ClInclude Include="KrokyGeneral.h" />
     <QtMoc Include="StateListModel.h">
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;C:\opencvjirka\include;$(QTDIR)\include\QtWinExtras;$(QTDIR)\include\QtMultimedia;$(QTDIR)\include\QtMultimediaWidgets</IncludePath>
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;C:\opencvjirka\include;$(QTDIR)\include\QtWinExtras;$(QTDIR)\include\QtMultimedia;$(QTDIR)\include\QtMultimediaWidgets</IncludePath>

@@ -40,7 +40,7 @@
          </property>
          <property name="maximumSize">
           <size>
-           <width>200</width>
+           <width>16777215</width>
            <height>16777215</height>
           </size>
          </property>
@@ -209,6 +209,13 @@
                    </widget>
                   </item>
                   <item>
+                   <widget class="QPushButton" name="btn_add_krok_rotate">
+                    <property name="text">
+                     <string>Rotate</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
                    <widget class="QPushButton" name="btn_add_krok_resize">
                     <property name="text">
                      <string>Resize</string>
@@ -249,13 +256,13 @@
          </property>
          <property name="minimumSize">
           <size>
-           <width>150</width>
+           <width>184</width>
            <height>100</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>100</width>
+           <width>16777215</width>
            <height>16777215</height>
           </size>
          </property>
@@ -286,6 +293,20 @@
               </widget>
              </item>
              <item>
+              <widget class="QPushButton" name="btn_state_up">
+               <property name="text">
+                <string>Up</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="btn_state_down">
+               <property name="text">
+                <string>Down</string>
+               </property>
+              </widget>
+             </item>
+             <item>
               <widget class="QPushButton" name="btn_delete_state">
                <property name="text">
                 <string>Delete state</string>
@@ -301,6 +322,18 @@
                <width>16777215</width>
                <height>16777215</height>
               </size>
+             </property>
+             <property name="dragEnabled">
+              <bool>true</bool>
+             </property>
+             <property name="dragDropMode">
+              <enum>QAbstractItemView::InternalMove</enum>
+             </property>
+             <property name="defaultDropAction">
+              <enum>Qt::MoveAction</enum>
+             </property>
+             <property name="alternatingRowColors">
+              <bool>true</bool>
              </property>
             </widget>
            </item>
