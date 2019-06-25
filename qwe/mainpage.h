@@ -42,7 +42,7 @@ private:
 	string getSelectedFilepath();
 
 	StateListModel* state_list_model;
-	Krokosled Mainpage::getCurrentKrokosled();
+	Krokosled* Mainpage::getCurrentKrokosled();
 
 protected:
 	bool Mainpage::eventFilter(QObject *obj, QEvent *event); 

@@ -9,7 +9,7 @@ public:
 	~KrokyGeneral();
 };
 
-class Krok_rotate : krok {
+class Krok_rotate : Krok {
 protected:
 	void execute(Krokosled* _krokosled);
 

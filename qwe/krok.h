@@ -5,17 +5,17 @@
 
 using namespace std;
 
-class krok : QWidget
+class Krok : QWidget
 {
 public:
-	krok();
-	~krok();
+	Krok();
+	~Krok();
 
 	string name;
 
 
 protected:
-	void execute(Krokosled* _krokosled);
+	//void execute(Krokosled* _krokosled);
 
 		
 	

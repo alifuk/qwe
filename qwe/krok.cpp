@@ -2,14 +2,14 @@
 
 
 
-krok::krok()
+Krok::Krok()
 {	
 }
+/*
+void Krok::execute(Krokosled* _krokosled) {
 
-void krok::execute(Krokosled* _krokosled) {
+}*/
 
-}
-
-krok::~krok()
+Krok::~Krok()
 {
 }

@@ -76,6 +76,9 @@
     <QtMoc Include="StateListModel.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="krokosled.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="mainpage.qrc">
@@ -83,9 +86,6 @@
     </QtRcc>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="krokosled.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="krok.h">
       <Filter>Header Files</Filter>
     </ClInclude>

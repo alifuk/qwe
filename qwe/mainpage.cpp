@@ -13,6 +13,7 @@
 #include "KrokyGeneral.h"
 
 #include <QKeyEvent>
+#include <QAbstractListModel>
 
 void Mainpage::keyPressEvent(QKeyEvent* event)
 {
@@ -178,10 +179,10 @@ string Mainpage::getSelectedFilepath()
 	return wid->filepath;
 }
 
-Krokosled Mainpage::getCurrentKrokosled() {
+Krokosled* Mainpage::getCurrentKrokosled() {
 	//ui.lv_states.selected
 	Krokosled* k = new Krokosled();
-	return *k;
+	return k;
 
 }
 

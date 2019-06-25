@@ -21,7 +21,7 @@ public:
 
 
 private:
-	vector<Krokosled>* states;
+	vector<Krokosled*>* states;
 	int number_of_states;
 
 };

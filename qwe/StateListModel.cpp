@@ -6,7 +6,7 @@ using namespace std;
 
 StateListModel::StateListModel()
 {
-	states = new vector<Krokosled>();
+	states = new vector<Krokosled*>();
 	number_of_states = 1;
 	addState();
 }
@@ -24,8 +24,8 @@ int StateListModel::rowCount(const QModelIndex & parent) const
 QVariant StateListModel::data(const QModelIndex & index, int role) const
 {
 	if (role == Qt::DisplayRole) {
-		Krokosled k = states->at(index.row());
-		QVariant* v = new QVariant(QString::fromStdString(k.name));
+		Krokosled* k = states->at(index.row());
+		QVariant* v = new QVariant(QString::fromStdString(k->name));
 		return *v;
 	}
 
@@ -36,7 +36,7 @@ void StateListModel::addState()
 { 
 	Krokosled* krokosled = new Krokosled();
 	krokosled->name = to_string(number_of_states) ;
-	states->push_back(*krokosled);
+	states->push_back(krokosled);
 	number_of_states++;
 	dataChanged(QModelIndex(), QModelIndex());
 }
